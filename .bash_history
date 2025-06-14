@@ -16,3 +16,4 @@ php artisan migrate:status
 php artisan migrate
 cd laravel-react/
 npm run build
+php artisan make:controller DashBoardController --resource
