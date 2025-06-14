@@ -23,3 +23,14 @@ php artisan make:model Video
 php artisan make:factory VideoFactory
 php artisan make:seeder VideoSeeder
 php artisan db:seed
+php artisan make::controller VideoController -r
+php artisan make:controller VideoController -r
+php artisan route:list
+php artisan route::list
+php artisan route::list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+history
+php artisan route:list
