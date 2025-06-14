@@ -17,3 +17,9 @@ php artisan migrate
 cd laravel-react/
 npm run build
 php artisan make:controller DashBoardController --resource
+php artisan make:migration create_videos_table
+php artisan migrate
+php artisan make:model Video
+php artisan make:factory VideoFactory
+php artisan make:seeder VideoSeeder
+php artisan db:seed
