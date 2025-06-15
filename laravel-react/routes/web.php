@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->prefix('videos')->group(function () {
     Route::get('/', [VideoController::class, 'index'])->name('video.index');
+    Route::get('/{id}', [VideoController::class, 'show'])->name('video.show');
 });
 
 require __DIR__ . '/auth.php';

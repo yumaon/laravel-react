@@ -38,7 +38,8 @@ class VideoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $video = Video::find($id);
+        return Inertia::render('Video/Show', compact('video'));
     }
 
     /**
