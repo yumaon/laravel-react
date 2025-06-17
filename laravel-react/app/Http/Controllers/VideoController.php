@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -22,7 +23,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Video/Create');
     }
 
     /**
@@ -30,7 +31,11 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data['user_id'] = auth()->id();
+        Video::create($data);
+
+        return Inertia::location(route('video.index'));
     }
 
     /**

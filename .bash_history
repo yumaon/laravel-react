@@ -34,3 +34,4 @@ php artisan route:list
 php artisan route:list
 history
 php artisan route:list
+php artisan route:list
