@@ -35,7 +35,7 @@ class VideoController extends Controller
         $data['user_id'] = auth()->id();
         Video::create($data);
 
-        return Inertia::location(route('video.index'));
+        return Inertia::location(route('videos.index'));
     }
 
     /**
@@ -52,15 +52,26 @@ class VideoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $video = Video::find($id);
+        return Inertia::render('Video/Edit', compact('video'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Video $video)
     {
-        //
+        $validateData = $request->validate([
+            'title' => 'required|string|max:255',
+            'text' => 'required|string',
+            'status' => 'required|string',
+            'youtube_url' => 'nullable|url',
+        ]);
+
+        //$video = Video::find($id);
+        $video->update($validateData);
+
+        return redirect()->route('videos.index')->with('success', '更新が完了しました。');
     }
 
     /**

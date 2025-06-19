@@ -21,8 +21,13 @@ const Video = ({video}) => {
       </div>
       <div className="flex justify-between items-center">
         <span className="text-sm text-gray-500 dark:text-gray-400">投稿日: {new Date(video.created_at).toLocaleDateString()}</span>
-        <div onClick={handleBack} className="text-blue-500 hover:underline dark:text-blue-400 cursor-pointer">
-          戻る
+        <div>
+          <div className="text-blue-500 hover:underline dark:text-blue-400 cursor-pointer">
+            <Link href={`/videos/${video.id}/edit`}>編集</Link>
+          </div>
+          <div onClick={handleBack} className="text-blue-500 hover:underline dark:text-blue-400 cursor-pointer">
+            戻る
+          </div>
         </div>
       </div>
     </div>

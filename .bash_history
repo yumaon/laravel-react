@@ -35,3 +35,26 @@ php artisan route:list
 history
 php artisan route:list
 php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+php artisan route:list
+composer require tightenco/ziggy
+php artisan route:list
+php artisan route:list
+php artisan route:clear
+php artisan route:list
+php artisan route:clear
+php artisan ziggy:generate
+php artisan route:list
+php artisan config:cache
+php artisan route:clear
+php artisan config:clear
+php artisan view:clear

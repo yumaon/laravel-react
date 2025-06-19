@@ -27,13 +27,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('videos', VideoController::class);
 });
 
-Route::middleware('auth')->prefix('videos')->group(function () {
-    Route::get('/', [VideoController::class, 'index'])->name('video.index');
-    Route::get('/create', [VideoController::class, 'create'])->name('video.create');
-    Route::post('/store', [VideoController::class, 'store'])->name('video.store');
-    Route::get('/{id}', [VideoController::class, 'show'])->name('video.show');
-});
+// Route::middleware('auth')->prefix('videos')->group(function () {
+//     //Route::get('/', [VideoController::class, 'index'])->name('video.index');
+//     // Route::get('/create', [VideoController::class, 'create'])->name('video.create');
+//     // Route::post('/store', [VideoController::class, 'store'])->name('video.store');
+//     // Route::put('/{id}/update', [VideoController::class, 'update'])->name('video.update');
+//     // Route::get('/{id}', [VideoController::class, 'show'])->name('video.show');
+//     // Route::get('/{id}/edit', [VideoController::class, 'edit'])->name('video.edit');
+// });
 
 require __DIR__ . '/auth.php';

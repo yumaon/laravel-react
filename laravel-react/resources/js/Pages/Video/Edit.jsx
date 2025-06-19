@@ -1,15 +1,27 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
-import { useState } from "react";
+import { Link, router } from "@inertiajs/react";
+import { useState, useEffect } from "react";
 import { Inertia } from "@inertiajs/inertia";
 
-const VideoCreate = ({}) => {
+const VideoEdit = ({video}) => {
+  // useStateの正しい使用方法
   const [formData, setFormData] = useState({
-    'title': '',
-    'text': '',
-    'status': '',
-    'youtube_url': ''
+    'title': "",
+    'text': "", 
+    'status': "",
+    'youtube_url': ""
   })
+
+  useEffect(() => {
+    if (video) {
+      setFormData({
+        'title': video.title,
+        'text': video.text,
+        'status': video.status,
+        'youtube_url': video.youtube_url
+      })
+    }
+  }, [video]);
   
   const handleBack = () => {
     window.history.back();
@@ -19,14 +31,29 @@ const VideoCreate = ({}) => {
     setFormData({...formData, [e.target.name]: e.target.value});
   }
 
-  const handleSubmit = (e) => {
+  const videoUpdate = (e) => {
     e.preventDefault();
-    Inertia.post('/videos', formData);
+    
+    // デバッグ用のコンソール出力
+    console.log('Video ID:', video.id);
+    console.log('Form Data:', formData);
+    
+    // 直接URLを指定してリクエスト
+    Inertia.put(`/videos/${video.id}`, formData, {
+      onStart: () => console.log('リクエスト開始'),
+      onSuccess: (page) => {
+        console.log('成功:', page);
+        // 成功時にビデオ一覧ページにリダイレクト
+        Inertia.visit('/videos');
+      },
+      onError: (errors) => console.log('エラー:', errors),
+      onFinish: () => console.log('リクエスト完了')
+    });
   }
 
   return (
     <div className="p-6 bg-white rounded-lg shadow-md dark:bg-gray-800">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={videoUpdate}>
         <div className="space-y-4">
           
           <input 
@@ -72,7 +99,7 @@ const VideoCreate = ({}) => {
         </div>
 
         <button 
-          type="submit" 
+          type="submit"
           className="mt-6 w-full px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-indigo-500 dark:hover:bg-indigo-600"
         >
           保存する
@@ -88,4 +115,4 @@ const VideoCreate = ({}) => {
   )
 };
 
-export default VideoCreate
+export default VideoEdit
