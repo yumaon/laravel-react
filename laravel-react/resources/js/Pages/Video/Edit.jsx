@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, router } from "@inertiajs/react";
 import { useState, useEffect } from "react";
-import { Inertia } from "@inertiajs/inertia";
+import { route } from "ziggy-js";
 
 const VideoEdit = ({video}) => {
   // useStateの正しい使用方法
@@ -24,7 +24,7 @@ const VideoEdit = ({video}) => {
   }, [video]);
   
   const handleBack = () => {
-    window.history.back();
+    router.visit(window.history.back());
   }
 
   const handleChange = (e) => {
@@ -33,22 +33,7 @@ const VideoEdit = ({video}) => {
 
   const videoUpdate = (e) => {
     e.preventDefault();
-    
-    // デバッグ用のコンソール出力
-    console.log('Video ID:', video.id);
-    console.log('Form Data:', formData);
-    
-    // 直接URLを指定してリクエスト
-    Inertia.put(`/videos/${video.id}`, formData, {
-      onStart: () => console.log('リクエスト開始'),
-      onSuccess: (page) => {
-        console.log('成功:', page);
-        // 成功時にビデオ一覧ページにリダイレクト
-        Inertia.visit('/videos');
-      },
-      onError: (errors) => console.log('エラー:', errors),
-      onFinish: () => console.log('リクエスト完了')
-    });
+    router.put(route('videos.update', video.id), formData);
   }
 
   return (

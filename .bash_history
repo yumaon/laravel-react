@@ -58,3 +58,8 @@ php artisan config:cache
 php artisan route:clear
 php artisan config:clear
 php artisan view:clear
+php artisan route:list
+php artisan --version
+composer show inertiajs/inertia-laravel
+php artisan route:list
+php artisan route:list --name=videos

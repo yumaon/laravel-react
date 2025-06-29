@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { useState } from "react";
-import { Inertia } from "@inertiajs/inertia";
 
 const VideoCreate = ({}) => {
   const [formData, setFormData] = useState({
@@ -12,7 +11,7 @@ const VideoCreate = ({}) => {
   })
   
   const handleBack = () => {
-    window.history.back();
+    router.visit(window.history.back());
   }
 
   const handleChange = (e) => {
@@ -21,7 +20,7 @@ const VideoCreate = ({}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Inertia.post('/videos', formData);
+    router.post('/videos', formData);
   }
 
   return (

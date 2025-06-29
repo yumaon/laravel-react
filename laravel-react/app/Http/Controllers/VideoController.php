@@ -59,19 +59,22 @@ class VideoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Video $video)
+    public function update(Request $request, string $id)
     {
         $validateData = $request->validate([
             'title' => 'required|string|max:255',
             'text' => 'required|string',
-            'status' => 'required|string',
-            'youtube_url' => 'nullable|url',
+            'status' => 'required',
+            'youtube_url' => 'nullable|string', // urlからstringに変更
         ]);
 
-        //$video = Video::find($id);
+        $validateData = $request->all();
+
+        $video = Video::find($id);
         $video->update($validateData);
 
-        return redirect()->route('videos.index')->with('success', '更新が完了しました。');
+        //return redirect()->route('videos.index')->with('success', '更新が完了しました。');
+        return \Inertia\Inertia::location(route('videos.index'));
     }
 
     /**
