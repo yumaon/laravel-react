@@ -63,3 +63,10 @@ php artisan --version
 composer show inertiajs/inertia-laravel
 php artisan route:list
 php artisan route:list --name=videos
+php artisan route:list
+php artisan route:list --name=videos
+history
+php artisan db:seed
+php artisan db:seed
+php artisan route:list
+php artisan route:list --name=videos

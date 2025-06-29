@@ -82,6 +82,9 @@ class VideoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $video = Video::find($id);
+        $video->delete();
+
+        return Inertia::location(route('videos.index'));
     }
 }

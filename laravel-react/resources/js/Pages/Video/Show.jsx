@@ -1,10 +1,17 @@
 import React from "react";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
+import { route } from "ziggy-js";
 
 const Video = ({video}) => {
   
   const handleBack = () => {
     window.history.back();
+  }
+
+  const destroyBtn = (id) => {
+    if (window.confirm('本当に削除しますか？')) {
+      router.delete(route('videos.destroy', id));
+    }
   }
 
   return (
@@ -24,6 +31,9 @@ const Video = ({video}) => {
         <div>
           <div className="text-blue-500 hover:underline dark:text-blue-400 cursor-pointer">
             <Link href={`/videos/${video.id}/edit`}>編集</Link>
+          </div>
+          <div onClick={() => destroyBtn(video.id)} className="text-blue-500 hover:underline dark:text-blue-400 cursor-pointer">
+            削除
           </div>
           <div onClick={handleBack} className="text-blue-500 hover:underline dark:text-blue-400 cursor-pointer">
             戻る
