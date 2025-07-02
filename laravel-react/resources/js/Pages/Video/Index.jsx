@@ -18,6 +18,7 @@ const Videos = ({ videos }) => {
 
   return (
       <VStack spacing={4} align="stretch">
+        <Text textStyle="xl" margin={5}>Videos</Text>
         {videos.map((video) => (
         <Box key={video.id} p={4} bg={bgColor} borderRadius="md" shadow="md">
           <HStack justify="space-between">
