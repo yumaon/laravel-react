@@ -1,6 +1,6 @@
 import { Link, router } from "@inertiajs/react";
 import { route } from "ziggy-js";
-import { Box, Button, VStack, Text, HStack } from "@chakra-ui/react";
+import { Box, Button, VStack, Text, HStack, Table,  } from "@chakra-ui/react";
 import { useColorModeValue } from '../../Components/ui/color-mode';
 
 const Videos = ({ videos }) => {
@@ -17,8 +17,8 @@ const Videos = ({ videos }) => {
   const buttonTextColor = useColorModeValue("white", "black");
 
   return (
-    <VStack spacing={4} align="stretch">
-      {videos.map((video) => (
+      <VStack spacing={4} align="stretch">
+        {videos.map((video) => (
         <Box key={video.id} p={4} bg={bgColor} borderRadius="md" shadow="md">
           <HStack justify="space-between">
             <Text fontSize="lg" fontWeight="bold" color={textColor}>{video.title}</Text>
@@ -46,6 +46,28 @@ const Videos = ({ videos }) => {
           </HStack>
         </Box>
       ))}
+
+      <Table.ScrollArea borderWidth="1px" rounded="md" height="auto">
+        <Table.Root size="sm" stickyHeader>
+          <Table.Header>
+            <Table.Row bg="bg.subtle">
+              <Table.ColumnHeader>title</Table.ColumnHeader>
+              <Table.ColumnHeader>text</Table.ColumnHeader>
+              <Table.ColumnHeader textAlign="end">status</Table.ColumnHeader>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {videos.map((video) => (
+              <Table.Row key={video.id}>
+                <Table.Cell>{video.title}</Table.Cell>
+                <Table.Cell>{video.text}</Table.Cell>
+                <Table.Cell textAlign="end">{video.status}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table.Root>
+      </Table.ScrollArea>
 
       <Button 
         as={Link} 
