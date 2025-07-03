@@ -14,7 +14,12 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::all();
+        //$videos = Video::all();
+
+        $videos = Video::all()->each(function ($video) {
+            $video->statusName;
+        });
+
         return Inertia::render('Video/Index', compact('videos'));
     }
 
